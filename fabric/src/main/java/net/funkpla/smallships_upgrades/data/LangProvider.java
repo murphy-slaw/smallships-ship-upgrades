@@ -28,16 +28,23 @@ public class LangProvider extends FabricLanguageProvider {
     translationBuilder.add(
         "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.name", "Ship Type");
     translationBuilder.add(
-        "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.speed",
-        "Max Speed Upgrades");
+        "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.speed", "Max Speed Upgrades");
     translationBuilder.add(
         "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.health",
         "Max Health Upgrades");
     translationBuilder.add(
-        "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.cargo",
-        "Max Cargo Upgrades");
+        "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.cargo", "Max Cargo Upgrades");
     translationBuilder.add(
         "text.autoconfig.smallships_upgrades.option.upgradeRecyclePercentage",
         "Percentage of upgrades to drop on break");
+    translationBuilder.add(
+        "text.autoconfig.smallships_upgrades.option.speedIncrement",
+        "Ship max speed increase per upgrade");
+    translationBuilder.add(
+        "text.autoconfig.smallships_upgrades.option.healthIncrement",
+        "Ship max health increase per upgrade");
+    translationBuilder.add(
+        "text.autoconfig.smallships_upgrades.option.cargoIncrement",
+        "Ship capacity increase per upgrade (rows)");
   }
 }

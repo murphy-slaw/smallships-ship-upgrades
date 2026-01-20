@@ -38,19 +38,19 @@ public interface Upgradeable extends Ability {
       var attributes = self().getAttributes();
       switch (item.getType()) {
         case SPEED:
-          attributes.maxSpeed += 10;
+          attributes.maxSpeed += config.speedIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
           break;
         case CARGO:
           if (self() instanceof ContainerShip container) {
-            var containerSize = container.getContainerSize() + 54;
+            var containerSize = container.getContainerSize() + (config.cargoIncrement * 9);
             ((UpdatePagingInvoker) container).smallships_upgrades$invokeUpdatePaging(containerSize);
             container.setData(CONTAINER_SIZE, containerSize);
             container.resizeContainer(containerSize);
           }
           break;
         case HEALTH:
-          attributes.maxHealth += 50;
+          attributes.maxHealth += config.healthIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
           break;
       }

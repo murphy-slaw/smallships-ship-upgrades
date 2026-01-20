@@ -14,9 +14,16 @@ import net.funkpla.smallships_upgrades.Constants;
 public class UpgradeConfig implements ConfigData {
   @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
   public int upgradeRecyclePercentage = 100;
+  @ConfigEntry.BoundedDiscrete(min=1, max=100)
+  public int speedIncrement = 10;
+  @ConfigEntry.BoundedDiscrete(min=1, max=200)
+  public int healthIncrement = 20;
+  @ConfigEntry.BoundedDiscrete(min=1, max=12)
+  public int cargoIncrement = 6;
   public List<UpgradeCapsConfig> caps = new ArrayList<>();
 
-  @Data
+
+    @Data
   @NoArgsConstructor
   @AllArgsConstructor
   public static class UpgradeCapsConfig {

@@ -9,6 +9,9 @@
   "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.name": "Ship Type",
   "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.speed": "Max Speed Upgrades",
   "text.autoconfig.smallships_upgrades.option.caps": "Upgrade Caps",
+  "text.autoconfig.smallships_upgrades.option.cargoIncrement": "Ship capacity increase per upgrade (rows)",
+  "text.autoconfig.smallships_upgrades.option.healthIncrement": "Ship max health increase per upgrade",
+  "text.autoconfig.smallships_upgrades.option.speedIncrement": "Ship max speed increase per upgrade",
   "text.autoconfig.smallships_upgrades.option.upgradeRecyclePercentage": "Percentage of upgrades to drop on break",
   "text.autoconfig.smallships_upgrades.title": "Small Ships Upgrades"
 }
