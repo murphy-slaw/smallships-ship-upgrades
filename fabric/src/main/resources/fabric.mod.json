@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "examplemod",
+    "id": "${mod_id}",
     "version": "${version}",
     "name": "${mod_name}",
     "description": "${description}",
@@ -15,13 +15,28 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "net.funkpla.examplemod.ExampleMod"
+            "net.funkpla.smallships_upgrades.SmallshipsUpgradesFabric"
+        ],
+        "fabric-datagen": [
+            "net.funkpla.smallships_upgrades.data.DataGenerator"
+        ],
+        "modmenu": [
+            "net.funkpla.smallships_upgrades.ModMenuConfig"
+        ],
+        "cardinal-components": [
+            "net.funkpla.smallships_upgrades.components.ComponentInitializer"
+        ]
+    },
+    "custom": {
+        "cardinal-components": [
+            "${mod_id}:ship_upgrades"
         ]
     },
     "mixins": [
         "${mod_id}.mixins.json",
         "${mod_id}.fabric.mixins.json"
     ],
+
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",

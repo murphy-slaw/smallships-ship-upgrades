@@ -1,0 +1,14 @@
+{
+  "item.smallships_upgrades.cargo_upgrade": "Ship Cargo Upgrade",
+  "item.smallships_upgrades.health_upgrade": "Ship Damage Upgrade",
+  "item.smallships_upgrades.speed_upgrade": "Ship Speed Upgrade",
+  "itemGroup.smallships_upgrades.items": "Small Ships Upgrades",
+  "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig": "Ship Caps",
+  "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.cargo": "Max Cargo Upgrades",
+  "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.health": "Max Health Upgrades",
+  "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.name": "Ship Type",
+  "text.autoconfig.smallships_upgrades.option.UpgradeCapsConfig.speed": "Max Speed Upgrades",
+  "text.autoconfig.smallships_upgrades.option.caps": "Upgrade Caps",
+  "text.autoconfig.smallships_upgrades.option.upgradeRecyclePercentage": "Percentage of upgrades to drop on break",
+  "text.autoconfig.smallships_upgrades.title": "Small Ships Upgrades"
+}
