@@ -9,6 +9,7 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class ForgeShipUpgradeAccessor implements ShipUpgradeAccessor {
   private LazyOptional<IUpgradeCapability> upgradeCapability;
+  private Entity ship;
 
   public ForgeShipUpgradeAccessor() {}
 
@@ -17,7 +18,9 @@ public class ForgeShipUpgradeAccessor implements ShipUpgradeAccessor {
   }
 
   public ShipUpgradeAccessor from(Entity entity) {
-    return new ForgeShipUpgradeAccessor(entity);
+    var acc = new ForgeShipUpgradeAccessor(entity);
+    acc.ship = entity;
+    return acc;
   }
 
   @Override
@@ -34,4 +37,9 @@ public class ForgeShipUpgradeAccessor implements ShipUpgradeAccessor {
   public void removeUpgrade(UpgradeType type) {
     upgradeCapability.resolve().ifPresent(cap -> cap.removeUpgrade(type));
   }
+
+    @Override
+    public void setUpgradeCount(UpgradeType type, int count) {
+        upgradeCapability.resolve().ifPresent(cap -> cap.setUpgradeCount(type,count));
+    }
 }

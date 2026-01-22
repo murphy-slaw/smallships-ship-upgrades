@@ -34,4 +34,9 @@ public class FabricShipUpgradeAccessor implements ShipUpgradeAccessor{
     public void removeUpgrade(UpgradeType type) {
         shipUpgrades.removeUpgrade(type);
     }
+
+    @Override
+    public void setUpgradeCount(UpgradeType type, int count) {
+        shipUpgrades.setUpgradeCount(type,count);
+    }
 }

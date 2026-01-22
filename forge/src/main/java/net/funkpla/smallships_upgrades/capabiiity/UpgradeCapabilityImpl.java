@@ -1,10 +1,9 @@
 package net.funkpla.smallships_upgrades.capabiiity;
 
-import net.funkpla.smallships_upgrades.UpgradeType;
-import net.minecraft.nbt.CompoundTag;
-
 import java.util.HashMap;
 import java.util.Map;
+import net.funkpla.smallships_upgrades.UpgradeType;
+import net.minecraft.nbt.CompoundTag;
 
 public class UpgradeCapabilityImpl implements IUpgradeCapability {
 
@@ -17,7 +16,7 @@ public class UpgradeCapabilityImpl implements IUpgradeCapability {
         final CompoundTag tag = new CompoundTag();
         CompoundTag upgrades = new CompoundTag();
         for (UpgradeType type: UpgradeType.values()){
-            upgrades.putInt(type.toString(), upgradeCounts.get(type));
+            upgrades.putInt(type.toString(), upgradeCounts.getOrDefault(type,0));
         }
         tag.put("upgrades", upgrades);
         return tag;
@@ -47,5 +46,12 @@ public class UpgradeCapabilityImpl implements IUpgradeCapability {
             upgradeCounts.put(type,getUpgradeCount(type)-1);
         }
     }
+
+    @Override
+    public void setUpgradeCount(UpgradeType type, int count) {
+        upgradeCounts.put(type,count);
+    }
+
+
 
 }
