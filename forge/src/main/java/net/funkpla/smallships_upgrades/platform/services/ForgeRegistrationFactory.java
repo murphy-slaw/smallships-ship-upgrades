@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import net.funkpla.smallships_upgrades.platform.ForgePlatformHelper;
 import net.funkpla.smallships_upgrades.platform.registration.RegistrationProvider;
 import net.funkpla.smallships_upgrades.platform.registration.RegistryObject;
 import net.minecraft.core.Holder;

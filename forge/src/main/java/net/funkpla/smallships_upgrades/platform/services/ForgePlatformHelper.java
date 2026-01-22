@@ -1,7 +1,6 @@
-package net.funkpla.smallships_upgrades.platform;
+package net.funkpla.smallships_upgrades.platform.services;
 
 import net.funkpla.smallships_upgrades.Constants;
-import net.funkpla.smallships_upgrades.platform.services.PlatformHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;

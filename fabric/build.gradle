@@ -35,8 +35,16 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.36")
 }
 
+configurations {
+    datagenOutput
+}
+
 fabricApi {
     configureDataGeneration()
+
+    dependencies {
+        datagenOutput files(runDatagen)
+    }
 }
 
 loom {

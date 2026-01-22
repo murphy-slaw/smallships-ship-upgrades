@@ -59,6 +59,17 @@ dependencies {
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
     modApi("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}")
     modImplementation 'maven.modrinth:small-ships:58DKgNnY'
+    api("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
+}
+
+configurations.create('fabricDatagen')
+dependencies {
+    fabricDatagen project(path: ':fabric', configuration: 'datagenOutput')
+}
+
+processResources {
+    from configurations.fabricDatagen.singleFile
 }
 
 jar {

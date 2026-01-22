@@ -41,6 +41,7 @@ public interface Upgradeable extends Ability {
           attributes.maxSpeed += config.speedIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
           break;
+
         case CARGO:
           if (self() instanceof ContainerShip container) {
             var containerSize = container.getContainerSize() + (config.cargoIncrement * 9);
@@ -49,6 +50,7 @@ public interface Upgradeable extends Ability {
             container.resizeContainer(containerSize);
           }
           break;
+
         case HEALTH:
           attributes.maxHealth += config.healthIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
