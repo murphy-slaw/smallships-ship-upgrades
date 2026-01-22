@@ -14,6 +14,7 @@ import net.funkpla.smallships_upgrades.config.UpgradeConfig.UpgradeCapsConfig;
 import net.funkpla.smallships_upgrades.item.UpgradeItem;
 import net.funkpla.smallships_upgrades.mixin.UpdatePagingInvoker;
 import net.funkpla.smallships_upgrades.platform.services.ShipUpgradeAccessor;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -23,12 +24,27 @@ import net.minecraft.world.item.ItemStack;
 public interface Upgradeable extends Ability {
   UpgradeConfig config = AutoConfig.getConfigHolder(UpgradeConfig.class).getConfig();
 
+  default void playSoundAtShip(Player player, SoundEvent soundEvent) {
+    this.self()
+        .level()
+        .playSound(
+            player,
+            this.self().getX(),
+            this.self().getY() + 4.0,
+            this.self().getZ(),
+            soundEvent,
+            this.self().getSoundSource(),
+            15.0F,
+            1.0F);
+  }
+
   default boolean interactUpgrade(Player player, InteractionHand interactionHand) {
     ItemStack stack = player.getItemInHand(interactionHand);
     if (stack.getItem() instanceof UpgradeItem item) {
       ShipUpgradeAccessor upgrades = this.getUpgrades();
 
       if (upgrades.getUpgradeCount(item.getType()) >= getCap(item.getType())) {
+        this.playSoundAtShip(player, SoundEvents.NOTE_BLOCK_DIDGERIDOO.value());
         return true;
       }
 
@@ -40,6 +56,7 @@ public interface Upgradeable extends Ability {
         case SPEED:
           attributes.maxSpeed += config.speedIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
+          this.playSoundAtShip(player, SoundEvents.WOOL_PLACE);
           break;
 
         case CARGO:
@@ -48,26 +65,17 @@ public interface Upgradeable extends Ability {
             ((UpdatePagingInvoker) container).smallships_upgrades$invokeUpdatePaging(containerSize);
             container.setData(CONTAINER_SIZE, containerSize);
             container.resizeContainer(containerSize);
+            this.playSoundAtShip(player, SoundEvents.BARREL_CLOSE);
           }
           break;
 
         case HEALTH:
           attributes.maxHealth += config.healthIncrement;
           self().setData(Ship.ATTRIBUTES, attributes.getSaveData());
+          this.playSoundAtShip(player, SoundEvents.UI_STONECUTTER_TAKE_RESULT);
           break;
       }
 
-      this.self()
-          .level()
-          .playSound(
-              player,
-              this.self().getX(),
-              this.self().getY() + 4.0,
-              this.self().getZ(),
-              SoundEvents.NOTE_BLOCK_DIDGERIDOO.value(),
-              this.self().getSoundSource(),
-              15.0F,
-              1.0F);
       return true;
     }
     return false;
@@ -116,8 +124,8 @@ public interface Upgradeable extends Ability {
     }
   }
 
-  default int getRecycledCount(int count){
-      return Math.round(count * (config.upgradeRecyclePercentage / 100f));
+  default int getRecycledCount(int count) {
+    return Math.round(count * (config.upgradeRecyclePercentage / 100f));
   }
 
   ShipUpgradeAccessor getUpgrades();
