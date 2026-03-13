@@ -1,6 +1,9 @@
+import org.jetbrains.changelog.Changelog
+
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev.legacyforge'
+    id "me.modmuss50.mod-publish-plugin" version "1.1.0"
 }
 
 mixin {
@@ -77,4 +80,41 @@ jar {
     manifest.attributes([
             "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
     ])
+}
+
+publishMods {
+    type = STABLE
+    version = "${project.version}+${minecraft_version}"
+    changelog = project(":common").changelog.renderItem(project(":common").changelog
+            .getLatest()
+            .withHeader(false)
+            .withEmptySections(false),
+            Changelog.OutputType.MARKDOWN
+    )
+    file = reobfJar.archiveFile
+
+    curseforge("curseforgeForge") {
+        projectId = "1441109"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        javaVersions.add(JavaVersion.VERSION_17)
+        modLoaders.add("forge")
+        clientRequired = true
+        serverRequired = true
+        requires("cloth-config")
+        requires("small-ships")
+        optional("modmenu")
+    }
+
+    modrinth("modrinthForge") {
+        projectId = "HRWfY2Uh"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(project.minecraft_version)
+        modLoaders.add("forge")
+        requires("cloth-config")
+        requires("small-ships")
+        requires("fabric-api")
+        requires("cardinal-components-api")
+        optional("modmenu")
+    }
 }

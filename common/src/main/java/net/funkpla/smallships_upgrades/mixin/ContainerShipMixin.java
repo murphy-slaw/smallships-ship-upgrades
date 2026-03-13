@@ -1,7 +1,10 @@
 package net.funkpla.smallships_upgrades.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.talhanation.smallships.world.entity.ship.ContainerShip;
 import net.funkpla.smallships_upgrades.entity.ship.abilities.Upgradeable;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -14,6 +17,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ContainerShipMixin extends Entity implements Upgradeable {
   public ContainerShipMixin(EntityType<?> entityType, Level level) {
     super(entityType, level);
+  }
+
+  @WrapMethod(method = "readChestVehicleSaveData")
+  private void resizeIntelligently(CompoundTag compoundTag, Operation<Void> original) {
+    ((ContainerShip) (Object) this)
+        .resizeContainer(((ContainerShip) (Object) this).getContainerSize());
+    original.call(compoundTag);
   }
 
   @Inject(
