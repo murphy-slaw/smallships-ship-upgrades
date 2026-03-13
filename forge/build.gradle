@@ -64,6 +64,8 @@ dependencies {
     modImplementation 'maven.modrinth:small-ships:58DKgNnY'
     api("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.3"))
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.3"))
 }
 
 configurations.create('fabricDatagen')
